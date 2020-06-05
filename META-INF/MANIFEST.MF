@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: cide-plugin-game-ew
+Bundle-SymbolicName: mock-plugin-game-ew;singleton:=true
+Bundle-Version: 1.2.0
+Bundle-Vendor: hrj
+Automatic-Module-Name: cide-plugin-game-keyboard
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: com.cfets.cide.plugin.game.ew.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.jface,
+ org.eclipse.jface.text;bundle-version="3.15.0",
+ org.eclipse.ui.workbench.texteditor;bundle-version="3.11.200"
+Bundle-ClassPath: .,
+ lib/jacob.jar

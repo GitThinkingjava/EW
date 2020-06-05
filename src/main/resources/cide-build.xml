@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<project name="cide" basedir="." default="build">
+	
+	<property file="cide-build.properties" />
+	<property name="root" value="http://172.17.242.168/svn/JStack/trunk3/cide/" />
+	
+	<target name="unzip">
+  		<available file="cide-build.properties" property="cide-build.exist" /> 
+  		<echo>file exist : ${cide-build.exist}</echo>   
+  	</target>
+
+	<target name="clean" depends="unzip">
+		<echo>delete ${root}/tags/${sonar.projectName}/${pom_version}</echo>
+		<exec executable="cmd.exe">
+            <arg line="/c svn delete ${root}/tags/${sonar.projectName}/${pom_version} -m 'delete' "/>
+		</exec>	
+	</target>
+	
+	<target name="mkdir" depends="clean">
+			<echo>mkdir ${root}/tags/${sonar.projectName}</echo>
+			<exec executable="cmd.exe">
+				<arg line="/c svn mkdir ${root}/tags/${sonar.projectName} -m 'create file ${sonar.projectName}' "/>
+			</exec>	
+		</target>
+	
+	<target name="build" depends="mkdir">
+		<echo>${sonar.projectName} will be tag of svn..</echo>
+		<echo>source file : ${root}/cide/${sonar.projectName}</echo>
+		<echo>goal file : ${root}/tags/${sonar.projectName}/${pom_version}</echo>
+		<exec executable="cmd.exe">
+            <arg line="/c svn cp ${root}/cide/${sonar.projectName} ${root}/tags/${sonar.projectName}/${pom_version} -m 'release ${pom_version}' "/>
+		</exec>
+	</target>
+	
+</project>
